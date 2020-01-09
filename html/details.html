@@ -190,11 +190,9 @@
 
     $(function () {
         let id = getUrlParam('id');
-        let param = {'id': id}
         $.ajax({
-            type: 'POST',
-            url: 'http://scy.itdage.top/corporation/article/web/getArticleInfo',
-            data: JSON.stringify(param),
+            type: 'GET',
+            url: 'http://localhost:8769/api-d/web/article/getArticleById/' + id,
             contentType: "application/json;charset=UTF-8",//指定消息请求类型
             dataType: 'json',
             success: function (data) {
