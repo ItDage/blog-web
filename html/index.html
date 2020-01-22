@@ -60,36 +60,13 @@
     <div class="cont w1000">
         <div class="title">
         <span class="layui-breadcrumb" lay-separator="|">
-          <a href="javascript:;" class="active">设计文章</a>
-          <a href="javascript:;">前端文章</a>
-          <a href="javascript:;">旅游杂记</a>
+          <a href="javascript:;" class="active" onclick="category('jishu', 1200)" id="jishu">技术</a>
+          <a href="javascript:;" onclick="category('suibi', 1201)" id="suibi">随笔</a>
+          <a href="javascript:;" onclick="category('zongjie', 1202)" id="zongjie">总结</a>
+          <a href="javascript:;" onclick="category('qita', 1204)" id="qita">其他</a>
         </span>
         </div>
-        <div class="list-item">
-            <!--<div class="item">-->
-                <!--<div class="layui-fluid">-->
-                    <!--<div class="layui-row">-->
-                        <!--<div class="layui-col-xs12 layui-col-sm4 layui-col-md5">-->
-                            <!--<div class="img"><img src="../res/img/sy_img1.jpg" alt=""></div>-->
-                        <!--</div>-->
-                        <!--<div class="layui-col-xs12 layui-col-sm8 layui-col-md7">-->
-                            <!--<div class="item-cont">-->
-                                <!--<h3>空间立体效果图，完美呈现最终效果<button class="layui-btn layui-btn-danger new-icon">new</button></h3>-->
-                                <!--<h5>设计文章</h5>-->
-                                <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
-                                <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
-                                <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
-                                <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
-                                <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
-                                <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
-                                <!--<p>室内设计作为一门新兴的学科，尽管还只是近数十年的事，但是人们有意识地对自己生活、生产活动的室内进行安排布置，甚至美化装饰，赋予室内环境以所祈使的气氛，却早巳从人类文明伊始的时期就已存在</p>-->
-                                <!--<a href="details.html" class="go-icon"></a>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        </div>
+        <div class="list-item"></div>
         <div id="demo" style="text-align: center;"></div>
     </div>
 </div>
@@ -116,10 +93,18 @@
     var laypage;
     var currentPage = 1;
     var pageSize = 5;
+    var type = 1200;
     var firstLoad = true;
-	function test(msg){
-		msg+= 'sfsf'
-		alert(msg)
+    function removeClass(element, cla) {
+        $(element).removeClass(cla);
+    }
+
+	function category(id, tempType){
+        removeClass('a.active', 'active');
+        type = tempType;
+	    $('#' + id).addClass('active');
+	    firstLoad = true;
+	    initArticle();
 	}
 
     $(function () {
@@ -134,17 +119,16 @@
 
     // 初始化文章
     function initArticle() {
-        const param = {"currentPage": currentPage, "pageSize": pageSize};
+        const param = {"currentPage": currentPage, "pageSize": pageSize, "type": type};
         $.ajax({
             type: 'GET',
             // url: 'http://scy.itdage.top/corporation/article/web/getArticle',
-            url: 'http://localhost:8769/api-d/web/article/getArticleList/' + currentPage + "/" + pageSize,
+            url: 'http://localhost:8769/api-d/web/article/getArticleList/' + currentPage + "/" + pageSize + "/" + type,
             // url: 'http://localhost:9090/manage/article/web/getArticle',
             // data: JSON.stringify(param),
             contentType: "application/json;charset=UTF-8",//指定消息请求类型
             dataType: 'json',
             success: function (data) {
-                console.log(data)
                 if(firstLoad){
                     laypage.render({
                         elem: 'demo'
@@ -160,7 +144,7 @@
                     });
                     firstLoad = false;
                 }
-                // $('.list-item').empty();
+                $('.list-item').empty();
                 var tableData = data.data.data;
                 for (let i = 0; i < tableData.length; i++) {
                     var str = '<div class="item">';

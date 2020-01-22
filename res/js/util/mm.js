@@ -1,16 +1,17 @@
 /**
- 
+
  @Name: layuiSimpleBlog - 极简博客模板
  @Author: xuzhiwen
  @Copyright: layui.com
- 
+
  */
- 
- 
+
+
 layui.define(['jquery','element','laytpl','carousel','laypage'],function(exports){
 	var $ = layui.$,laytpl = layui.laytpl,element = layui.element,laypage = layui.laypage,carousel = layui.carousel;
 	var _mm = {
 		request : function(param){
+			alert('s')
 			var _this = this;
 			$.ajax({
 				type   		: param.method || 'get',
@@ -28,7 +29,7 @@ layui.define(['jquery','element','laytpl','carousel','laypage'],function(exports
 	                }
 				},
 				error       : function(err){
-					 typeof param.error === 'function' && param.error(err.statusText);	
+					 typeof param.error === 'function' && param.error(err.statusText);
 				}
 			});
 		},
