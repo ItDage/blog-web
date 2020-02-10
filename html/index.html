@@ -90,11 +90,12 @@
 <script type="text/javascript" src="../res/layui/layui.js"></script>
 <script src="../res/js/jquery.js"></script>
 <script type="text/javascript">
-    var laypage;
-    var currentPage = 1;
-    var pageSize = 5;
-    var type = 1200;
-    var firstLoad = true;
+    let laypage;
+    let currentPage = 1;
+    let pageSize = 5;
+    let type = 1200;
+    let firstLoad = true;
+
     function removeClass(element, cla) {
         $(element).removeClass(cla);
     }
@@ -145,16 +146,16 @@
                     firstLoad = false;
                 }
                 $('.list-item').empty();
-                var tableData = data.data.data;
+                const tableData = data.data.data;
                 for (let i = 0; i < tableData.length; i++) {
-                    var str = '<div class="item">';
+                    let str = '<div class="item">';
                     str += '<div class="layui-fluid">';
                     str += '<div class="layui-row">';
                     str += '<div class="layui-col-xs12 layui-col-sm4 layui-col-md5">';
-                    if (i >= 5) {
+                    if (tableData[i].images == null) {
                         str += '<div class="img"><img src="../res/img/sy_img1.jpg" alt=""></div>';
                     } else {
-                        str += '<div class="img"><img src="../res/img/sy_img' + (i + 1) + '.jpg" alt=""></div>';
+                        str += '<div class="img"><img src="'+tableData[i].images+'" alt=""></div>';
                     }
                     str += '</div>';
                     str += '<div class="layui-col-xs12 layui-col-sm8 layui-col-md7">';
