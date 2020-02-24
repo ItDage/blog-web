@@ -90,6 +90,7 @@
 <script type="text/javascript" src="../res/layui/layui.js"></script>
 <script src="../res/js/jquery.js"></script>
 <script type="text/javascript">
+    let request_url = "http://114.67.83.246:8769"
     let laypage;
     let currentPage = 1;
     let pageSize = 5;
@@ -123,10 +124,7 @@
         const param = {"currentPage": currentPage, "pageSize": pageSize, "type": type};
         $.ajax({
             type: 'GET',
-            // url: 'http://scy.itdage.top/corporation/article/web/getArticle',
-            url: 'http://localhost:8769/api-d/web/article/getArticleList/' + currentPage + "/" + pageSize + "/" + type,
-            // url: 'http://localhost:9090/manage/article/web/getArticle',
-            // data: JSON.stringify(param),
+            url: request_url + '/api-d/web/article/getArticleList/' + currentPage + "/" + pageSize + "/" + type,
             contentType: "application/json;charset=UTF-8",//指定消息请求类型
             dataType: 'json',
             success: function (data) {

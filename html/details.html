@@ -135,6 +135,7 @@
 <script type="text/javascript" src="../res/layui/layui.js"></script>
 <script src="../res/js/jquery.js"></script>
 <script type="text/javascript">
+    let request_url = "http://114.67.83.246:8769"
     layui.config({
         base: '../res/js/util/'
     }).use(['element', 'laypage', 'form', 'menu'], function () {
@@ -148,7 +149,7 @@
         if (id != null){
             $.ajax({
                 type: 'GET',
-                url: 'http://localhost:8769/api-d/web/article/getArticleById/' + id,
+                url: request_url + '/api-d/web/article/getArticleById/' + id,
                 contentType: "application/json;charset=UTF-8",//指定消息请求类型
                 dataType: 'json',
                 success: function (data) {
@@ -176,7 +177,7 @@
     function initLy() {
         $.ajax({
             type: 'get',
-            url: 'http://localhost:8769/api-d/web/liuyan/getArticleLiuyan/'+ getUrlParam('id') + '/'+currentPage+"/"+pageSize,
+            url: request_url + '/api-d/web/liuyan/getArticleLiuyan/'+ getUrlParam('id') + '/'+currentPage+"/"+pageSize,
             dataType: 'json',
             contentType: 'application/json',
             async: true,
@@ -243,7 +244,7 @@
                 textarea.val('')
                 $.ajax({
                     type: 'post',
-                    url: 'http://localhost:8769/api-d/web/liuyan/addArticleLiuyan',
+                    url: request_url + '/api-d/web/liuyan/addArticleLiuyan',
                     dataType: 'json',
                     contentType: 'application/json',
                     data: JSON.stringify(data),

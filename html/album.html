@@ -74,6 +74,7 @@
 <script type="text/javascript" src="../res/layui/layui.js"></script>
 <script type="text/javascript" src="../res/js/jquery.js"></script>
 <script type="text/javascript">
+    let request_url = "http://114.67.83.246:8769"
     let total = 0;
     let layerPage = null
     let layerAll = null
@@ -126,7 +127,7 @@
     // 后台去加载数据
     function init() {
         $.ajax({
-            url: 'http://localhost:8769/api-a/album/getAll/' + pageStart + "/" + pageSize,
+            url: request_url + '/api-a/album/getAll/' + pageStart + "/" + pageSize,
             type: 'get',
             contentType: "application/json;charset=UTF-8",//指定消息请求类型
             dataType: 'json',

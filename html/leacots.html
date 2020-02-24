@@ -109,6 +109,7 @@
   </div>
   <script type="text/javascript" src="../res/layui/layui.js"></script>
   <script type="text/javascript">
+    let request_url = "http://114.67.83.246:8769"
     Date.prototype.format = function(fmt) {
       var o = {
         "M+" : this.getMonth()+1,                 //月份
@@ -146,7 +147,7 @@
     function init(mm) {
       $.ajax({
         type: 'GET',
-        url:'http://localhost:8769/api-d/web/liuyan/get/'+currentPage+"/"+pageSize,
+        url: request_url + '/api-d/web/liuyan/get/'+currentPage+"/"+pageSize,
         contentType: "application/json;charset=UTF-8",//指定消息请求类型
         dataType: 'json',
         success: function (data) {
