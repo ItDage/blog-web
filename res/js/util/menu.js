@@ -5,8 +5,6 @@
  @Copyright: layui.com
 
  */
-
-
 layui.define(['mm','jquery'],function(exports){
   var $ = layui.$,mm = layui.mm;
   var menu = {
@@ -88,7 +86,7 @@ layui.define(['mm','jquery'],function(exports){
           textarea.val('')
           const params = {
             method: 'post',
-            url: 'http://localhost:8769/api-d/web/liuyan/add',
+            url: request_url + '/api-d/web/liuyan/add',
             dataType: 'json',
             contentType: 'application/json',
             data: JSON.stringify(data),
