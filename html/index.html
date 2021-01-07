@@ -14,7 +14,7 @@
     <![endif]-->
 </head>
 <body>
-<div class="header">
+<div class="header" id="header">
     <div class="menu-btn">
         <div class="menu"></div>
     </div>
@@ -141,7 +141,10 @@
                             }
                         }
                     });
+                    document.getElementById("header").scrollIntoView();
                     firstLoad = false;
+                }else {
+                    document.getElementById("top").scrollIntoView();
                 }
                 $('.list-item').empty();
                 const tableData = data.data.data;
@@ -174,7 +177,6 @@
                     str += '</div>';
                     $('.list-item').append(str);
                 }
-                document.getElementById("top").scrollIntoView();
             },
             error: function (data) {
 
